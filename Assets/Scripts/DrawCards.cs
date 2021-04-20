@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class DrawCards : MonoBehaviour
 {
-
-    public GameObject card1;
-    public GameObject card2;
+    public GameObject card;
     public GameObject playerArea;
     public GameObject enemyArea;
 
-    List<GameObject> cards = new List<GameObject>();
+    public List<Card> deck = new List<Card>();
+    List<GameObject> activeCards = new List<GameObject>();
 
     void Start()
     {
-        cards.Add(card1);
-        cards.Add(card2);
+
     }
 
     public void Draw()
     {
-        for(var i = 0; i < 5; i++)
+        //Discards current hand before drawing a new one
+        foreach (GameObject card in activeCards)
         {
-            GameObject playerCard = Instantiate(cards[Random.Range(0,cards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
-            playerCard.transform.SetParent(playerArea.transform, false);
+            Destroy(card);
+        }
 
-            GameObject enemyCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector3(0, 0, 0), Quaternion.identity);
-            enemyCard.transform.SetParent(enemyArea.transform, false);
+        for (var i = 0; i < 6; i++)
+        {
+            GameObject newCard = Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
+            newCard.GetComponent<CardDisplay>().card = deck[Random.Range(0, deck.Count - 1)];
+            newCard.transform.SetParent(playerArea.transform, false);
+            activeCards.Add(newCard);
         }
 
     }
