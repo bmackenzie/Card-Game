@@ -33,8 +33,11 @@ public class DragDrop : MonoBehaviour
     //needs to check for a specific collider if the game has multiple things with collisions
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isOverDropZone = true;
-        dropZone = collision.gameObject;
+        if (collision.gameObject.tag == "DropZone")
+        {
+            isOverDropZone = true;
+            dropZone = collision.gameObject;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

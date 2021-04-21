@@ -381,8 +381,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 769344328}
-        m_TargetAssemblyTypeName: DrawCards, Assembly-CSharp
-        m_MethodName: Draw
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: Execute
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -445,6 +445,8 @@ MonoBehaviour:
   card: {fileID: 7361331403913989659, guid: 37fae56cd02acf7499ed15c0f9599f27, type: 3}
   playerArea: {fileID: 450705286}
   enemyArea: {fileID: 234299878}
+  dropZone: {fileID: 1804749087}
+  handSize: 6
   deck:
   - {fileID: 11400000, guid: 622290db0b5f4194fbbdbc4bb7900816, type: 2}
   - {fileID: 11400000, guid: 40dc51a0bb3f55743add2a963ecce85b, type: 2}
@@ -520,7 +522,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Draw Cards
+  m_Text: Execute
 --- !u!222 &1678102415
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -529,6 +531,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678102412}
   m_CullTransparentMesh: 0
+--- !u!1 &1804749087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1329467125501887172, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
+  m_PrefabInstance: {fileID: 7302987495306877226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2146722376
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +954,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2146722380}
     m_Modifications:
+    - target: {fileID: -1027508296972254202, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.79959106
+      objectReference: {fileID: 0}
+    - target: {fileID: -1027508296972254202, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
+      propertyPath: m_Size.x
+      value: 406.081
+      objectReference: {fileID: 0}
     - target: {fileID: 420439016755366327, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -993,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420439016755366327, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0083237
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 420439016755366327, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1001,7 +1016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 420439016755366327, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 339.9912
+      value: 406.07068
       objectReference: {fileID: 0}
     - target: {fileID: 420439016755366327, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1033,6 +1048,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1329467125501887172, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
       propertyPath: m_Name
+      value: DropZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329467125501887172, guid: d8221d35d3c93364c9b76c71117b6650, type: 3}
+      propertyPath: m_TagString
       value: DropZone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
