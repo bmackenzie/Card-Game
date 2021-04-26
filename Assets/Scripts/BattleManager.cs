@@ -1,21 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// game now draws from the characters deck, next steps: cards drawn are actually removed from the deck, instead of destroying cards, place them in an inaccessible discard pile the loops back into the deck when it's empty.
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, ESCAPE, VICTORY, DEFEAT, RUN }
 
 public class BattleManager : MonoBehaviour
 {
+    public BattleState state;
+
     public GameObject card;
     public GameObject playerArea;
-    public GameObject enemyArea;
+    public GameObject character;
     public GameObject dropZone;
     public int handSize;
 
-    public List<Card> deck = new List<Card>();
+    Character playerUnit;
+
+    List<Card> deck = new List<Card>();
     List<GameObject> activeCards = new List<GameObject>();
+
+
 
     void Start()
     {
+        state = BattleState.START;
+        SetupBattle();
+    }
 
+    void SetupBattle()
+    {
+        playerUnit = character.GetComponent<Character>();
+        playerUnit.namePlate.text = playerUnit.characterName;
+        playerUnit.portrait.sprite = playerUnit.art;
+        Draw(handSize, playerUnit.deck);
     }
 
 
@@ -34,17 +51,15 @@ public class BattleManager : MonoBehaviour
             Destroy(card);
         }
 
-        Draw(handSize);
+        Draw(handSize, playerUnit.deck);
     }
 
-    public void Draw(int numCards)
+    public void Draw(int numCards, List<Card> activeDeck)
     {
-
-
         for (var i = 0; i < numCards; i++)
         {
             GameObject newCard = Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
-            newCard.GetComponent<CardDisplay>().card = deck[Random.Range(0, deck.Count - 1)];
+            newCard.GetComponent<CardDisplay>().card = activeDeck[Random.Range(0, activeDeck.Count)];
             newCard.transform.SetParent(playerArea.transform, false);
             activeCards.Add(newCard);
         }

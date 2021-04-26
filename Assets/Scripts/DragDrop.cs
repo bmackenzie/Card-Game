@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragDrop : MonoBehaviour
 {
 
-    public GameObject canvas;
+    private GameObject canvas;
     private bool isDragging = false;
     private bool isOverDropZone = false;
     private GameObject dropZone;
@@ -25,6 +25,7 @@ public class DragDrop : MonoBehaviour
         if (isDragging)
         {
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            //set object to a child of canvas so that appears over other elements visually
             transform.SetParent(canvas.transform, true);
         }    
     }
