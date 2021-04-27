@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
     public Image portrait;
 
     public List<Card> deck = new List<Card>();
+    public List<Card> discardPile = new List<Card>();
 
     public void setCardOwner()
     {
