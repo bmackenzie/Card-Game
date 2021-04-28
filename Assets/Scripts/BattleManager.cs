@@ -1,27 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// game now draws from the characters deck, next steps: cards drawn are actually removed from the deck, instead of destroying cards, place them in an inaccessible discard pile the loops back into the deck when it's empty.
+// Characters now instatiate at the start of the script, need to edit script to manage the three decks separately.
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, ESCAPE, VICTORY, DEFEAT, RUN }
 
 public class BattleManager : MonoBehaviour
 {
     public BattleState state;
 
-    public GameObject cardTemplate;
-    public GameObject playerArea;
+    
+    
     public GameObject character;
-    public GameObject dropZone;
-    public GameObject discardZone;
-    public int handSize;
 
+    
+
+    //Character Variables
+    public GameObject characterTemplate;
+    public List<PlayerCharacter> party = new List<PlayerCharacter>();
     Character playerUnit;
 
+    //place where characters live
+    public GameObject characterArea;
+
+    //Card Variables
+    public int handSize;
+    public GameObject cardTemplate;
     List<Card> deck = new List<Card>();
     //the cards the player can see and interact with, GameObject because the cards are already attached to the card Template
     List<GameObject> activeCards = new List<GameObject>();
     //Cards that have already been played but may need to be shuffled back in
     List<Card> discardPile = new List<Card>();
+
+    //Areas where cards can live
+    public GameObject playerArea;
+    public GameObject dropZone;
+    public GameObject discardZone;
+
 
 
 
@@ -33,6 +47,14 @@ public class BattleManager : MonoBehaviour
 
     void SetupBattle()
     {
+        foreach(PlayerCharacter partyMember in party)
+        {
+            GameObject newCharacter = Instantiate(characterTemplate, new Vector3(0, 0, 0), Quaternion.identity);
+            newCharacter.GetComponent<CharacterDisplay>().character = partyMember;
+            newCharacter.transform.SetParent(characterArea.transform, false);
+        }
+
+        //instatiate party members onto character Template
         //grab the character component of our player characters so we can access cards and stats
         playerUnit = character.GetComponent<Character>();
         playerUnit.namePlate.text = playerUnit.characterName;
