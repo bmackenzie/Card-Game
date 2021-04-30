@@ -545,11 +545,11 @@ GameObject:
   - component: {fileID: 7361331403913989658}
   - component: {fileID: 7361331403913989639}
   - component: {fileID: 7361331403913989636}
-  - component: {fileID: 7361331403913989637}
   - component: {fileID: 7361331403913989632}
   - component: {fileID: 7361331403913989633}
   - component: {fileID: 7361331403913989634}
   - component: {fileID: 7361331403913989635}
+  - component: {fileID: 898075542866607656}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -620,22 +620,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7361331403913989637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7361331403913989659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9b46dbbd795d58469ebce77d4d47136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 622290db0b5f4194fbbdbc4bb7900816, type: 2}
-  nameText: {fileID: 7361331402397202375}
-  descriptionText: {fileID: 7361331403454012246}
-  art: {fileID: 7361331403894593987}
 --- !u!114 &7361331403913989632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,7 +677,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c4777a5af000146b05a8b8cc0a2354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!61 &7361331403913989634
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -741,3 +724,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &898075542866607656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361331403913989659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d5471ad2525fd46a903f965e750b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
+  nameText: {fileID: 7361331402397202375}
+  descriptionText: {fileID: 7361331403454012246}
+  art: {fileID: 7361331403894593987}

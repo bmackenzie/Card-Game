@@ -16,16 +16,20 @@ MonoBehaviour:
   attack: 2
   hp: 20
   art: {fileID: 21300000, guid: 7a6b724a005bfed4191ba409458f7127, type: 3}
+  deckData:
+  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
+  - {fileID: 11400000, guid: 40dc51a0bb3f55743add2a963ecce85b, type: 2}
+  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
+  - {fileID: 11400000, guid: 40dc51a0bb3f55743add2a963ecce85b, type: 2}
+  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
+  - {fileID: 11400000, guid: 40dc51a0bb3f55743add2a963ecce85b, type: 2}
+  - {fileID: 11400000, guid: 40dc51a0bb3f55743add2a963ecce85b, type: 2}
+  - {fileID: 11400000, guid: 40dc51a0bb3f55743add2a963ecce85b, type: 2}
   deck:
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  discardPile:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

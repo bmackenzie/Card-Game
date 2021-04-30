@@ -10,6 +10,7 @@ public class CardDisplay : MonoBehaviour
     public Text nameText;
     public Text descriptionText;
     public Image art;
+    public PlayerCharacter owner;
     
     // Start is called before the first frame update
     void Start()

@@ -10,6 +10,7 @@ public class PlayerCharacter : ScriptableObject
     public int hp;
     public Sprite art;
 
-    public List<Card> deck = new List<Card>();
-    List<Card> discardPile = new List<Card>();
+    public List<Card> deckData = new List<Card>();
+    public List<GameObject> deck = new List<GameObject>();
+    public List<GameObject> discardPile = new List<GameObject>();
 }

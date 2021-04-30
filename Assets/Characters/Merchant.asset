@@ -16,16 +16,18 @@ MonoBehaviour:
   attack: 8
   hp: 0
   art: {fileID: 21300000, guid: 4cf50f041210f3743b67b2b302c4709c, type: 3}
+  deckData:
+  - {fileID: 11400000, guid: 622290db0b5f4194fbbdbc4bb7900816, type: 2}
+  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
+  - {fileID: 11400000, guid: 622290db0b5f4194fbbdbc4bb7900816, type: 2}
+  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
+  - {fileID: 11400000, guid: 622290db0b5f4194fbbdbc4bb7900816, type: 2}
+  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
+  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
   deck:
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
-  - {fileID: 11400000, guid: 6cb666fa1a5c64a40ad6906210763980, type: 2}
-  - {fileID: 11400000, guid: 52f5df2315118144cb73dcd4664ae4c8, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  discardPile: []

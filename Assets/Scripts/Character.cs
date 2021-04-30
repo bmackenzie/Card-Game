@@ -13,7 +13,8 @@ public class Character : MonoBehaviour
     public Text namePlate;
     public Image portrait;
 
-    public List<Card> deck = new List<Card>();
+    public List<Card> deckData = new List<Card>();
+    public List<GameObject> deck = new List<GameObject>();
     public List<Card> discardPile = new List<Card>();
 
     public void setCardOwner()
