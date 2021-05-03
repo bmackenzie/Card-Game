@@ -15,6 +15,12 @@ public class BattleManager : MonoBehaviour
     //place where characters live
     public GameObject characterArea;
 
+    //Enemy variable
+    public List<GameObject> enemies = new List<GameObject>();
+
+    //Place where enemies live;
+    public GameObject enemyArea;
+
     //Card Variables
     public int handSize;
     public GameObject cardTemplate;
@@ -31,19 +37,26 @@ public class BattleManager : MonoBehaviour
     public GameObject discardZone;
 
 
-
-
     void Start()
     {
         state = BattleState.START;
         SetupBattle();
     }
 
-    //instatiates card templates and applys card data to them, marking each card as "owned" by a particular character so we can access their specific discard pile
-    void generateCards()
+    void SetupBattle()
     {
+        //instatiate player characters and generate decks
         foreach(PlayerCharacter partyMember in party)
         {
+            //clears discardpile and deck in case there is leftover data before setting up this instance of the characters
+            partyMember.discardPile.Clear();
+            partyMember.deck.Clear();
+
+            GameObject newCharacter = Instantiate(characterTemplate, new Vector3(0, 0, 0), Quaternion.identity);
+            newCharacter.GetComponent<CharacterDisplay>().character = partyMember;
+            newCharacter.transform.SetParent(characterArea.transform, false);
+
+            //instatiates card templates and applys card data to them, marking each card as "owned" by a particular character so we can access their specific discard pile
             foreach (Card card in partyMember.deckData)
             {
                 GameObject newCard = Instantiate(cardTemplate, new Vector3(0, 0, 0), Quaternion.identity);
@@ -54,22 +67,10 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-    }
-
-    void SetupBattle()
-    {
-        foreach(PlayerCharacter partyMember in party)
+        foreach(GameObject enemy in enemies)
         {
-            //clears discardpile and deck in case there is leftover data before setting up this instance of the characters
-            partyMember.discardPile.Clear();
-            partyMember.deck.Clear();
-
-            GameObject newCharacter = Instantiate(characterTemplate, new Vector3(0, 0, 0), Quaternion.identity);
-            newCharacter.GetComponent<CharacterDisplay>().character = partyMember;
-            newCharacter.transform.SetParent(characterArea.transform, false);
+            Instantiate(enemy, new Vector3(0, 0, 0), Quaternion.identity, enemyArea.transform);
         }
-
-        generateCards();
 
         foreach (PlayerCharacter partyMember in party)
         {
@@ -83,8 +84,7 @@ public class BattleManager : MonoBehaviour
         foreach(Transform child in dropZone.transform)
         {
             Card playedCard = child.gameObject.GetComponent<CardDisplay>().card;
-            //card functions and behaviors can be implemented here
-            //Debug.Log(playedCard.cardName);
+            //card functions and behaviors can be implemented below in this loop
         }
 
         //Discards current hand before drawing a new one
@@ -100,8 +100,7 @@ public class BattleManager : MonoBehaviour
         foreach(PlayerCharacter partyMember in party)
         {
             Draw(partyMember, handSize / party.Count, partyMember.deck);
-        }
-        
+        }        
     }
 
     public void Draw(PlayerCharacter partyMember, int numCards, List<GameObject> activeDeck)
