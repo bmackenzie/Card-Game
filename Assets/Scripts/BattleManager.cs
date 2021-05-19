@@ -6,35 +6,27 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, ESCAPE, VICTORY, DEFEAT,
 
 public class BattleManager : MonoBehaviour
 {
-    public BattleState state;
+    //config variables
+    [SerializeField] GameObject characterTemplate;
+    [SerializeField] List<PlayerCharacter> party = new List<PlayerCharacter>();
+    [SerializeField] GameObject characterArea;
 
-    //Character Variables
-    public GameObject characterTemplate;
-    public List<PlayerCharacter> party = new List<PlayerCharacter>();
+    [SerializeField] List<GameObject> enemies = new List<GameObject>();
+    [SerializeField] GameObject enemyArea;
 
-    //place where characters live
-    public GameObject characterArea;
+    [SerializeField] int handSize;
+    [SerializeField] GameObject cardTemplate;
+    private List<Card> deck = new List<Card>();
+    private List<GameObject> activeCards = new List<GameObject>();
+    private List<Card> discardPile = new List<Card>();
 
-    //Enemy variable
-    public List<GameObject> enemies = new List<GameObject>();
-
-    //Place where enemies live;
-    public GameObject enemyArea;
-
-    //Card Variables
-    public int handSize;
-    public GameObject cardTemplate;
-    List<Card> deck = new List<Card>();
-    //the cards the player can see and interact with, GameObject because the cards are already attached to the card Template
-    List<GameObject> activeCards = new List<GameObject>();
-    //Cards that have already been played but may need to be shuffled back in
-    List<Card> discardPile = new List<Card>();
-
-    //Areas where cards can live
     public GameObject playerArea;
     public GameObject deckArea;
     public GameObject dropZone;
     public GameObject discardZone;
+
+    //state variables
+    BattleState state;
 
 
     void Start()
@@ -46,61 +38,80 @@ public class BattleManager : MonoBehaviour
     void SetupBattle()
     {
         //instatiate player characters and generate decks
-        foreach(PlayerCharacter partyMember in party)
+        foreach (PlayerCharacter partyMember in party)
         {
             //clears discardpile and deck in case there is leftover data before setting up this instance of the characters
             partyMember.discardPile.Clear();
             partyMember.deck.Clear();
 
-            GameObject newCharacter = Instantiate(characterTemplate, new Vector3(0, 0, 0), Quaternion.identity);
-            newCharacter.GetComponent<CharacterDisplay>().character = partyMember;
-            newCharacter.transform.SetParent(characterArea.transform, false);
-
-            //instatiates card templates and applys card data to them, marking each card as "owned" by a particular character so we can access their specific discard pile
-            foreach (Card card in partyMember.deckData)
-            {
-                GameObject newCard = Instantiate(cardTemplate, new Vector3(0, 0, 0), Quaternion.identity);
-                newCard.GetComponent<CardDisplay>().card = card;
-                newCard.GetComponent<CardDisplay>().owner = partyMember;
-                newCard.transform.SetParent(deckArea.transform, false);
-                partyMember.deck.Add(newCard);
-            }
+            InstatiateCharacters(partyMember);
+            InstatiateCards(partyMember);
         }
 
-        foreach(GameObject enemy in enemies)
+        InstatiateEnemies();
+        DrawNewHand();
+    }
+
+    private void InstatiateEnemies()
+    {
+        foreach (GameObject enemy in enemies)
         {
             Instantiate(enemy, new Vector3(0, 0, 0), Quaternion.identity, enemyArea.transform);
         }
+    }
 
-        foreach (PlayerCharacter partyMember in party)
+    private void InstatiateCharacters(PlayerCharacter partyMember)
+    {
+        GameObject newCharacter = Instantiate(characterTemplate, new Vector3(0, 0, 0), Quaternion.identity);
+        newCharacter.GetComponent<CharacterDisplay>().character = partyMember;
+        newCharacter.transform.SetParent(characterArea.transform, false);
+    }
+
+    private void InstatiateCards(PlayerCharacter partyMember)
+    {
+        //instatiates card templates and applys card data to them, marking each card as "owned" by a particular character so we can access their specific discard pile
+        foreach (Card card in partyMember.deckData)
         {
-            Draw(partyMember, handSize / party.Count, partyMember.deck);
+            GameObject newCard = Instantiate(cardTemplate, new Vector3(0, 0, 0), Quaternion.identity);
+            newCard.GetComponent<CardDisplay>().card = card;
+            newCard.GetComponent<CardDisplay>().owner = partyMember;
+            newCard.transform.SetParent(deckArea.transform, false);
+            partyMember.deck.Add(newCard);
         }
     }
 
-
     public void Execute()
     {
-        foreach(Transform child in dropZone.transform)
+        foreach (Transform child in dropZone.transform)
         {
             Card playedCard = child.gameObject.GetComponent<CardDisplay>().card;
             //card functions and behaviors can be implemented below in this loop
         }
 
         //Discards current hand before drawing a new one
+        DiscardActiveCards();
+        //reset active cards to recieve a new hand
+        activeCards.Clear();
+        //Draws a fresh hand of cards
+        DrawNewHand();
+    }
+
+    private void DrawNewHand()
+    {
+        foreach (PlayerCharacter partyMember in party)
+        {
+            Draw(partyMember, handSize / party.Count, partyMember.deck);
+        }
+    }
+
+    private void DiscardActiveCards()
+    {
         foreach (GameObject card in activeCards)
         {
             card.GetComponent<CardDisplay>().owner.discardPile.Add(card);
             //cards are moved off screen because we still want to access them but hide them from the player
             card.transform.SetParent(discardZone.transform, false);
         }
-        //reset active cards to recieve a new hand
-        activeCards.Clear();
-
-        foreach(PlayerCharacter partyMember in party)
-        {
-            Draw(partyMember, handSize / party.Count, partyMember.deck);
-        }        
     }
 
     public void Draw(PlayerCharacter partyMember, int numCards, List<GameObject> activeDeck)
